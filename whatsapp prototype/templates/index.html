@@ -1,0 +1,104 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototype</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1C1C1E; /* Dark theme */
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+        }
+        #chat-container {
+            width: 80%;
+            margin: 20px auto;
+            border: 1px solid #00A8A8;
+            border-radius: 10px;
+            background-color: #2C2C2E;
+            padding: 20px;
+        }
+        #chat-box {
+            height: 400px;
+            overflow-y: scroll;
+            border: 1px solid #383838;
+            padding: 10px;
+            background-color: #1E1E1E;
+            margin-bottom: 10px;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        .sent { 
+            background-color: #005F5F; 
+            text-align: right; 
+            margin-left: 20%;
+        }
+        .received { 
+            background-color: #383838; 
+            margin-right: 20%;
+        }
+        #input-area {
+            display: flex;
+        }
+        #message-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #383838;
+            border-radius: 5px;
+            background-color: #383838;
+            color: #FFFFFF;
+        }
+        button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            background-color: #008080;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00CED1;
+        }
+        #key-input {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        #user-indicator {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #004d4d;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <h2>Prototype (AES-128 GCM E2EE)</h2>
+        <div id="user-indicator">
+            <strong>You are: <span id="current-user">User1</span></strong>
+        </div>
+        <div id="key-input">
+            <label for="user-key">Your 16-Char Secret Key:</label>
+            <input type="password" id="user-key" value="MySecretKey12345" size="20">
+        </div>
+        <div id="chat-box"></div>
+        <div id="input-area">
+            <input type="text" id="message-input" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
+</body>
+</html>
